@@ -1,7 +1,4 @@
-import com.sun.deploy.security.SelectableSecurityManager;
-
-import java.util.Arrays;
-import java.util.IllegalFormatException;
+package fractions;
 
 public class Fraction {
    private Integer divident, divisor;

@@ -1,3 +1,5 @@
+package fractions;
+
 public class Main {
    public static void main(String[] args) {
       Fraction a = new Fraction("3/4");
