@@ -1,25 +1,63 @@
 package shapes;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+   private static Scanner sc = new Scanner(System.in);
+
    public static void main(String[] args) {
-      ArrayList<Shape> list = new ArrayList<>();
-      Long totalArea = new Long(0);
+      while (true) {
+         selectShapeMessage();
+         Integer selectedOption;
+         while ((selectedOption = sc.nextInt()) < 1 || selectedOption > 6) {
+            System.out.format("Selected option %d is not permitted%n");
+            selectShapeMessage();
+         }
+         Shape shape = fetchShape(selectedOption);
+         if (shape == null) return;
 
-      list.add(new Circle(3.));
-      list.add(new Triangle(4., 5., 3.));
-      list.add(new Rectangle(3., 2.));
-      list.add(new Square(6.));
-
-      for (Shape shape : list) {
-         totalArea += Math.round(shape.area());
+         System.out.format("Area of selected shape is %.2f cm2%n", shape.area());
+         System.out.println("Let's do it again");
       }
+   }
 
-      System.out.println(Math.round(list.get(0).area()) == 28);
-      System.out.println(list.get(1).area() == 6.);
-      System.out.println(list.get(2).area() == 6.);
-      System.out.println(list.get(3).area() == 36.);
-      System.out.println(totalArea == 28 + 6 + 6 + 36);
+   private static void selectShapeMessage() {
+      System.out.println("Select one of following shapes for area calculation:");
+      System.out.println("1.  Circle (initialized using radius)");
+      System.out.println("2.  Circle (initialized using diameter)");
+      System.out.println("3.  Triangle");
+      System.out.println("4.  Square");
+      System.out.println("5.  Rectangle");
+      System.out.println("Or hit 6 to Quit");
+   }
+
+   private static Shape fetchShape(Integer selectedOption) {
+      while (true) {
+         try {
+            switch (selectedOption) {
+               case 1:
+                  System.out.println("Type radius value:");
+                  return Circle.InitWithRadius(sc.nextDouble());
+               case 2:
+                  System.out.println("Type diameter value:");
+                  return Circle.InitWithDiameter(sc.nextDouble());
+               case 3:
+                  System.out.println("Type a, b, c values:");
+                  return new Triangle(sc.nextDouble(), sc.nextDouble(), sc.nextDouble());
+               case 4:
+                  System.out.println("Type a value:");
+                  return new Square(sc.nextDouble());
+               case 5:
+                  System.out.println("Type a, b values:");
+                  return new Rectangle(sc.nextDouble(), sc.nextDouble());
+               default:
+                  System.out.println("Quiting...");
+                  return null;
+            }
+         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Try it again");
+         }
+      }
    }
 }
