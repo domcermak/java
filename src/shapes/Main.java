@@ -1,10 +1,14 @@
 package shapes;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
    private static Scanner sc = new Scanner(System.in);
 
+   /*
    public static void main(String[] args) {
       while (true) {
          selectShapeMessage();
@@ -18,6 +22,27 @@ public class Main {
 
          System.out.format("Area of selected shape is %.2f cm2%n", shape.area());
          System.out.println("Let's do it again");
+      }
+   }
+    */
+
+   public static void main(String[] args) {
+      ArrayList<Shape> shapes = new ArrayList<>();
+
+      shapes.add(Circle.InitWithRadius(1.));
+      shapes.add(new Triangle(5., 5., 5. ));
+      shapes.add(new Rectangle(1., 3.));
+      shapes.add(new Square(2.));
+
+      System.out.println("Initial order");
+      for (Shape shape : shapes) {
+         System.out.println(shape.area());
+      }
+
+      Collections.sort(shapes);
+      System.out.println("Sorted:");
+      for (Shape shape : shapes) {
+         System.out.println(shape.area());
       }
    }
 
