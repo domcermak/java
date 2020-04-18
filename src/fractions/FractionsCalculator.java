@@ -1,3 +1,5 @@
+package fractions;
+
 public class FractionsCalculator {
    public static Fraction add(Fraction a, Fraction b) {
       return a.plus(b);
