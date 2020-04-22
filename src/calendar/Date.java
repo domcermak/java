@@ -32,22 +32,7 @@ public class Date {
       int dayOfWeek = (dc + (26 * (mc + 1)) / 10 + (yc % 100)
             + (yc % 100) / 4 + (yc / 100) / 4 + 5 * (yc / 100)) % 7;
 
-      switch (dayOfWeek) {
-         case 0:
-            return 6;
-         case 1:
-            return 7;
-         case 2:
-            return 1;
-         case 3:
-            return 2;
-         case 4:
-            return 3;
-         case 5:
-            return 4;
-         default:
-            return 5;
-      }
+      return (dayOfWeek + 5) % 7 + 1;
    }
 
    public Integer getDay() {
