@@ -8,6 +8,9 @@ import Cermak_ALG2_sem_Company.app.Employee;
 import java.security.InvalidParameterException;
 import java.util.Random;
 
+/**
+ * Class for creating new employee
+ */
 public class Add extends Option {
    private String firstName, surname, position, birthDate, sex;
 
@@ -45,6 +48,11 @@ public class Add extends Option {
       return new OptionData("New employee with id " + newId + " was created", false);
    }
 
+   /**
+    * Validation function for user params
+    * @param params Params passed along the option
+    * @return Validation state
+    */
    private Boolean areValidParams(String[] params) {
       if (params.length != 5) {
          return false;

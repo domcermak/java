@@ -1,6 +1,12 @@
 package Cermak_ALG2_sem_Company.utils;
 
+/**
+ * Container class to keep log configuration
+ */
 public class LoggerConfig {
+   /**
+    * Configuration level and filepath
+    */
    private String level, filepath;
 
    public String getLevel() {

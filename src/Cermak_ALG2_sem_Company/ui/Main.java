@@ -5,9 +5,15 @@ import Cermak_ALG2_sem_Company.app.OptionData;
 
 import java.util.Scanner;
 
+/**
+ * Main class
+ */
 public class Main {
    private static Scanner scanner = new Scanner(System.in);
 
+   /**
+    * Entry method
+    */
    public static void main(String[] args) {
       App app;
       try {

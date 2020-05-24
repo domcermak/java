@@ -1,6 +1,12 @@
 package Cermak_ALG2_sem_Company.ui;
 
+/**
+ * Options class contains method with help text used in UI
+ */
 public class Options {
+   /**
+    * Method with help text
+    */
    public static String helpText() {
       return "Options:\n"
             + String.format("%-80s %s\n", "list", "Lists whole company")

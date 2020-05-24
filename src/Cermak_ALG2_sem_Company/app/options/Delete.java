@@ -7,6 +7,9 @@ import Cermak_ALG2_sem_Company.app.Employee;
 
 import java.security.InvalidParameterException;
 
+/**
+ * Class to delete user by id
+ */
 public class Delete extends Option {
    private Integer id;
 
@@ -30,6 +33,11 @@ public class Delete extends Option {
       return new OptionData("Employee with id " + id + " was not found", false);
    }
 
+   /**
+    * Validation function for user params
+    * @param params Params passed along the option
+    * @return Validation state
+    */
    private Boolean areValidParams(String[] params) {
       if (params.length != 1) {
          return false;

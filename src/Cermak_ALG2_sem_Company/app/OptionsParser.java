@@ -6,13 +6,27 @@ import Cermak_ALG2_sem_Company.utils.AppLogger;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 
+/**
+ * Options parser class
+ */
 public class OptionsParser {
+   /**
+    * App log context
+    */
    private AppLogger logger;
 
+   /**
+    * Constructor
+    */
    public OptionsParser(AppLogger logger) {
       this.logger = logger;
    }
 
+   /**
+    * Method parsing input from user
+    * @param line Input line
+    * @return An option selected by user
+    */
    public Option parse(String line) {
       String[] params = line.split(" +");
       if (params[0].isEmpty()) {

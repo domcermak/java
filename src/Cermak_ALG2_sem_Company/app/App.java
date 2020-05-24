@@ -8,12 +8,29 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * App class
+ */
 public class App {
+   /**
+    * Logger
+    */
    private AppLogger logger;
+   /**
+    * Loaded company
+    */
    private Company company;
+   /**
+    * State if app is still running
+    */
    private Boolean running;
 
+   /**
+    * Constructor
+    *
+    * It loads company data and log configuration from files
+    * @throws IOException
+    */
    public App() throws IOException {
       ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
       LoggerConfig config = mapper.readValue(
@@ -31,6 +48,11 @@ public class App {
       logEmployees(logger.with("company_name", company.getName()));
    }
 
+   /**
+    * Method processing user input
+    * @param line Input by user
+    * @return Data returned by selected option
+    */
    public OptionData process(String line) {
       logger.info("processing", line);
 
@@ -44,11 +66,18 @@ public class App {
       return data;
    }
 
+   /**
+    * @return State if the app is still running
+    */
    public Boolean isRunning() {
       return running;
    }
 
-   private void logEmployees(AppLogger ctx) throws IOException {
+   /**
+    * Log employees
+    * @param ctx Log context
+    */
+   private void logEmployees(AppLogger ctx) {
       for (Employee employee : company.getEmployees()) {
          ctx.debug(
                "first_name", employee.getFirstName(),

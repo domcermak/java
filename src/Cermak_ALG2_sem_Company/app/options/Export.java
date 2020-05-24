@@ -9,6 +9,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Option to export current state of the company to the file
+ */
 public class Export extends Option {
    @Override
    public void applyParams(String[] params) {}

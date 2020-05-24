@@ -5,6 +5,9 @@ import Cermak_ALG2_sem_Company.app.Option;
 import Cermak_ALG2_sem_Company.app.OptionData;
 import Cermak_ALG2_sem_Company.app.Employee;
 
+/**
+ * Option to list current state of company
+ */
 public class List extends Option {
    @Override
    public void applyParams(String[] params) {

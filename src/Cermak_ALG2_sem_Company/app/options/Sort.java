@@ -5,6 +5,9 @@ import Cermak_ALG2_sem_Company.app.*;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 
+/**
+ * Option used to sort employees
+ */
 public class Sort extends Option {
    private String flag;
 
@@ -39,6 +42,11 @@ public class Sort extends Option {
       return new OptionData(builder.toString(), false);
    }
 
+   /**
+    * Validation function for user params
+    * @param params Params passed along the option
+    * @return Validation state
+    */
    private Boolean areValidParams(String[] params) {
       if (params.length != 1) {
          return false;
