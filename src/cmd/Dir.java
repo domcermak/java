@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class Dir extends Command {
    @Override
@@ -35,11 +36,11 @@ public class Dir extends Command {
                message = dirTreeToString(actualDir, 0, maxDepth);
                return new CommandState(message, actualDir);
             default:
-
          }
       }
 
-      return null;
+      message = "Undefined option(s) " + Arrays.toString(params) + " for command `dir`\n\nSee `help`";
+      return new CommandState(message, actualDir);
    }
 
    private String dirToString(File currentDir, File[] files) {
@@ -94,39 +95,15 @@ public class Dir extends Command {
          Integer maxDepth
    ) {
       StringBuilder builder = new StringBuilder();
-      File[] files = currentDir.listFiles();
+      builder.append(treeDir(currentDir, currentDepth));
 
-      builder.append(prepender(currentDepth, true));
-      if (currentDepth == 0) {
-         builder.append(currentDir.getAbsolutePath());
-      } else {
-         builder.append(String.format("%s", currentDir.getName()));
-      }
-      builder.append("\n");
-
-      if (files.length == 0) {
+      if (Objects.requireNonNull(currentDir.listFiles()).length == 0) {
          return builder.toString();
       }
 
-      for (File file : files) {
-         if (!file.isDirectory()) {
-            builder.append(prepender(currentDepth, false));
-            builder.append(String.format("%-40s%6d", file.getName(), file.length()));
-            builder.append("\n");
-         }
-      }
+      builder.append(treeSubfiles(currentDir, currentDepth));
+      builder.append(treeSubdirs(currentDir, currentDepth, maxDepth));
 
-      for (File file : files) {
-         if (file.isDirectory()) {
-            if (maxDepth <= currentDepth) {
-               builder.append(prepender(currentDepth, true));
-               builder.append(String.format("%s%n", file.getName()));
-            } else {
-               String subtree = dirTreeToString(file, currentDepth + 1, maxDepth);
-               builder.append(subtree);
-            }
-         }
-      }
       return builder.toString();
    }
 
@@ -139,6 +116,52 @@ public class Dir extends Command {
       }
       if (newLevel >= 0) {
          builder.append("+--- ");
+      }
+
+      return builder.toString();
+   }
+
+   private String treeDir(File dir, Integer depth) {
+      StringBuilder builder = new StringBuilder();
+
+      builder.append(prepender(depth, true));
+      if (depth == 0) {
+         builder.append(dir.getAbsolutePath());
+      } else {
+         builder.append(String.format("%s", dir.getName()));
+      }
+      builder.append("\n");
+
+      return builder.toString();
+   }
+
+   private String treeSubfiles(File dir, Integer depth) {
+      StringBuilder builder = new StringBuilder();
+
+      for (File file : Objects.requireNonNull(dir.listFiles())) {
+         if (!file.isDirectory()) {
+            builder.append(prepender(depth, false));
+            builder.append(String.format("%-40s%6d", file.getName(), file.length()));
+            builder.append("\n");
+         }
+      }
+
+      return builder.toString();
+   }
+
+   private String treeSubdirs(File dir, Integer depth, Integer maxDepth) {
+      StringBuilder builder = new StringBuilder();
+
+      for (File file : Objects.requireNonNull(dir.listFiles())) {
+         if (file.isDirectory()) {
+            if (maxDepth <= depth) {
+               builder.append(prepender(depth, true));
+               builder.append(String.format("%s%n", file.getName()));
+            } else {
+               String subtree = dirTreeToString(file, depth + 1, maxDepth); // and here is the recursion
+               builder.append(subtree);
+            }
+         }
       }
 
       return builder.toString();
