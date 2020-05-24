@@ -1,0 +1,20 @@
+name: Sample company
+employees:
+  - id: 1
+    firstName: Robert
+    surname: Newman
+    sex: male
+    birthDate: 13.2.1973
+    position: People OPS
+  - id: 2
+    firstName: Luke
+    surname: Skywalker
+    sex: male
+    birthDate: 1.1.1990
+    position: Key account manager
+  - id: 3
+    firstName: Darth
+    surname: Wader
+    sex: male
+    birthDate: 4.8.1923
+    position: Key account manager
