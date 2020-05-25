@@ -27,16 +27,14 @@ public class App {
 
    /**
     * Constructor
-    *
+    * <p>
     * It loads company data and log configuration from files
+    *
     * @throws IOException
     */
    public App() throws IOException {
       ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-      LoggerConfig config = mapper.readValue(
-            new File("src/Cermak_ALG2_sem_Company/data/logger.config.yaml"),
-            LoggerConfig.class
-      );
+      LoggerConfig config = LoggerConfig.InitFromFile("src/Cermak_ALG2_sem_Company/data/logger.config");
 
       this.logger = Logger.Init(config);
       this.company = mapper.readValue(
@@ -50,6 +48,7 @@ public class App {
 
    /**
     * Method processing user input
+    *
     * @param line Input by user
     * @return Data returned by selected option
     */
@@ -75,6 +74,7 @@ public class App {
 
    /**
     * Log employees
+    *
     * @param ctx Log context
     */
    private void logEmployees(AppLogger ctx) {

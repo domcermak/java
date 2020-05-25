@@ -25,11 +25,6 @@ public class Logger implements AppLogger {
    private ArrayList<String> withExtensions;
 
    /**
-    * Array of permitted log levels
-    */
-   public final String[] PERMITTED_LOG_LEVELS = {"debug", "info", "error"};
-
-   /**
     * Constructor
     * @param config Configuration for Logger
     * @return An instance of Logger
@@ -107,13 +102,9 @@ public class Logger implements AppLogger {
     * @param level Log level
     */
    private void validateLogLevel(String level) {
-      for (String permittedLevel : PERMITTED_LOG_LEVELS) {
-         if (permittedLevel.equals(level)) {
-            return;
-         }
+      if (!level.matches("(error|debug|info)")) {
+         throw new InvalidLogLevelException(level + " level is not permitted");
       }
-
-      throw new InvalidLogLevelException(level + " level is not permitted");
    }
 
    /**

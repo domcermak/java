@@ -3,6 +3,7 @@ package Cermak_ALG2_sem_Company.ui;
 import Cermak_ALG2_sem_Company.app.App;
 import Cermak_ALG2_sem_Company.app.OptionData;
 
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -15,6 +16,8 @@ public class Main {
     * Entry method
     */
    public static void main(String[] args) {
+      //writeLogLevel("debug");
+
       App app;
       try {
          app = new App();
@@ -36,6 +39,19 @@ public class Main {
          } catch (Exception e) {
             System.out.println(e.getMessage());
          }
+      }
+   }
+
+   private static void writeLogLevel(String level) {
+      String filepath = "src/Cermak_ALG2_sem_Company/data/logger.config";
+      try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filepath)))) {
+         for (char c : level.toCharArray()) {
+            out.writeChar(c);
+         }
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
    }
 }
