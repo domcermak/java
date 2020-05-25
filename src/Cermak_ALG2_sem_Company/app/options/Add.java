@@ -6,6 +6,7 @@ import Cermak_ALG2_sem_Company.app.OptionData;
 import Cermak_ALG2_sem_Company.app.Employee;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -44,12 +45,14 @@ public class Add extends Option {
       }
 
       company.getEmployees().add(newEmployee);
+      logger.info("new_employee_id", newEmployee.getId().toString());
 
-      return new OptionData("New employee with id " + newId + " was created", false);
+      return new OptionData("New employee with id " + newEmployee.getId() + " was created", false);
    }
 
    /**
     * Validation function for user params
+    *
     * @param params Params passed along the option
     * @return Validation state
     */
@@ -69,6 +72,7 @@ public class Add extends Option {
 
          return true;
       } catch (Exception e) {
+         logger.error("invalid_params", Arrays.toString(params));
          return false;
       }
    }

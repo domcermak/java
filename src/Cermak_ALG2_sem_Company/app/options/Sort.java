@@ -3,6 +3,7 @@ package Cermak_ALG2_sem_Company.app.options;
 import Cermak_ALG2_sem_Company.app.*;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -14,6 +15,7 @@ public class Sort extends Option {
    @Override
    public void applyParams(String[] params) {
       if (!areValidParams(params)) {
+         logger.error("invalid_params", Arrays.toString(params));
          throw new InvalidParameterException("Invalid parameters");
       }
       this.flag = params[0];
@@ -22,6 +24,8 @@ public class Sort extends Option {
    @Override
    public OptionData applyOnCompany(Company company) {
       StringBuilder builder = new StringBuilder();
+
+      logger.debug("flag", flag);
       switch (flag) {
          case "--age":
             builder.append("Sorted by age:\n");

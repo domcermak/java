@@ -24,6 +24,7 @@ public class OptionsParser {
 
    /**
     * Method parsing input from user
+    *
     * @param line Input line
     * @return An option selected by user
     */
@@ -43,6 +44,8 @@ public class OptionsParser {
       try {
          Class optionClass = Class.forName(optionName);
          Option option = (Option) optionClass.newInstance();
+
+         option.setLogger(logger.with("option", rawOptionName));
          option.applyParams(params);
          return option;
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {

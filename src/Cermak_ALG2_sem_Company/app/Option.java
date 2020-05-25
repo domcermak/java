@@ -1,9 +1,13 @@
 package Cermak_ALG2_sem_Company.app;
 
+import Cermak_ALG2_sem_Company.utils.AppLogger;
+
 /**
  * Abstract base class for options
  */
 public abstract class Option {
+   protected AppLogger logger;
+
    /**
     * A Constant with options package name
     */
@@ -21,4 +25,12 @@ public abstract class Option {
     * @return Data created by the operation
     */
    public abstract OptionData applyOnCompany(Company company);
+
+   /**
+    * AppLogger setter
+    * @param logger AppLogger
+    */
+   public void setLogger(AppLogger logger) {
+      this.logger = logger;
+   }
 }

@@ -11,6 +11,14 @@ public class LoggerConfig {
     */
    private String level, filepath;
 
+   /**
+    * Constructor
+    *
+    * Loads log level from binary file
+    * @param filepath Binary file path
+    * @return An instance of LoggerConfig
+    * @throws IOException
+    */
    public static LoggerConfig InitFromFile(String filepath) throws IOException {
       StringBuilder level = new StringBuilder();
       try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(filepath)))) {

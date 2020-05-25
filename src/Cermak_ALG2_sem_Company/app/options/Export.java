@@ -26,8 +26,10 @@ public class Export extends Option {
                company
          );
       } catch (IOException e) {
+         logger.error("export", "unable");
          return new OptionData("Unable to export: " + e.getMessage(),false);
       }
+      logger.debug("export", "exported");
       return new OptionData("Company exported to " + filepath,false);
    }
 }

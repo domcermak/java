@@ -16,7 +16,7 @@ public class Main {
     * Entry method
     */
    public static void main(String[] args) {
-      //writeLogLevel("debug");
+      // writeLogLevel("debug");
 
       App app;
       try {
@@ -48,8 +48,6 @@ public class Main {
          for (char c : level.toCharArray()) {
             out.writeChar(c);
          }
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
       } catch (IOException e) {
          e.printStackTrace();
       }

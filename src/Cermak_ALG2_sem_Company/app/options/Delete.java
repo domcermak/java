@@ -6,6 +6,7 @@ import Cermak_ALG2_sem_Company.app.OptionData;
 import Cermak_ALG2_sem_Company.app.Employee;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 
 /**
  * Class to delete user by id
@@ -27,14 +28,19 @@ public class Delete extends Option {
       for (Employee employee : company.getEmployees()) {
          if (employee.getId().equals(id)) {
             company.getEmployees().remove(employee);
+            logger.info("deleted", id.toString());
+
             return new OptionData("Employee deleted", false);
          }
       }
+      logger.error("not_found", id.toString());
+
       return new OptionData("Employee with id " + id + " was not found", false);
    }
 
    /**
     * Validation function for user params
+    *
     * @param params Params passed along the option
     * @return Validation state
     */
@@ -47,6 +53,7 @@ public class Delete extends Option {
          Integer.parseInt(params[0]);
          return true;
       } catch (Exception e) {
+         logger.error("invalid_params", Arrays.toString(params));
          return false;
       }
    }
